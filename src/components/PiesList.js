@@ -6,23 +6,25 @@ import PieCard from "./PieCard";
 
 class PiesList extends Component {
   render() {
-    const {pies} = this.props;
+    const {stores} = this.props;
 
     return (
       <Grid container spacing={24}>
         {
-          pies.map((item) => {
+          stores.map((store) => {
+            let pie = store.pie;
             return (
               <Grid item xs={4}>
                 <PieCard
-                  name="Beef and Chicken"
-                  storeName="Brian's Pies"
-                  quantity={24}
-                  price={230}
-                  phone="0431031609"
-                  address="366 Lonsdale Street"
-                  lat={-37.8128448}
-                  long={144.9604634}
+                  name={pie.displayName}
+                  storeName={store.displayName}
+                  quantity={pie.quantity}
+                  price={pie.priceString}
+                  phone={store.mobile}
+                  address={store.address}
+                  lat={store.coords.latitude}
+                  long={store.coords.longitude}
+                  rating={store.rating / 2}
                 />
               </Grid>
             )
