@@ -4751,6 +4751,13 @@ mapbox-gl@0.47.0:
     tinyqueue "^1.1.0"
     vt-pbf "^3.0.1"
 
+material-ui-search-bar@^1.0.0-beta.9:
+  version "1.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/material-ui-search-bar/-/material-ui-search-bar-1.0.0-beta.9.tgz#bbe5eafd3350ef6e0627b35e6992cf6f36c95523"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.5.8"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"

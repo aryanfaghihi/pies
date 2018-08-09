@@ -11,3 +11,8 @@
 .page-number {
     margin: 0 10px;
 }
+
+.search-bar {
+    max-width: 350px;
+    margin-left: auto;
+}

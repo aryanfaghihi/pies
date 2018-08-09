@@ -13,7 +13,7 @@ class App extends Component {
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="title" color="inherit">
-              🥧 Pie of the Day 🥧
+              <span role="img" aria-label="pie">🥧</span> Pie of the Day <span role="img" aria-label="pie">🥧</span>
             </Typography>
           </Toolbar>
         </AppBar>

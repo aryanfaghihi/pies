@@ -6,13 +6,13 @@ import PieCard from "./PieCard";
 
 class PiesList extends Component {
   render() {
-    const {stores} = this.props;
+    const {pies} = this.props;
 
     return (
       <Grid container spacing={24}>
         {
-          stores.map((store) => {
-            let pie = store.pie;
+          pies.map((pie) => {
+            let store = pie.store;
             return (
               <Grid item xs={4}>
                 <PieCard
