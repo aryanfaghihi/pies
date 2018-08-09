@@ -8,7 +8,7 @@ async function getPiesOfTheDay(pageNumber, searchText, sortOrder) {
     const response = await axios.get(API_Url);
     return response.data
   } catch (error) {
-    console.error(error);
+    return error;
   }
 }
 

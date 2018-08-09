@@ -10,6 +10,7 @@ import SearchBar from 'material-ui-search-bar';
 import Grid from '@material-ui/core/Grid';
 import UpArrow from '@material-ui/icons/ArrowDropUp';
 import DownArrow from '@material-ui/icons/ArrowDropDown';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 class PiesListContainer extends Component {
@@ -20,30 +21,50 @@ class PiesListContainer extends Component {
       page: 1,
       pies: [],
       searchText: '',
-      sortOrder: ''
+      sortOrder: '',
+      error: '',
+      openError: false,
+      isMounted: true
     };
   }
 
   componentWillMount() {
     getPiesOfTheDay(1).then(data => {
-      this.setState({pies: data});
+      if (this.state.isMounted) {
+        if (data instanceof Error) this.setState({openError: true, error: data.toString()});
+        else this.setState({pies: data});
+      }
     });
+    this.setState({
+      isMounted: true,
+    });
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      isMounted: false,
+    })
   }
 
   handleNewPage(isNextPage) {
     let newPage = this.state.page;
     isNextPage ? newPage++ : newPage--;
     getPiesOfTheDay(newPage, this.state.searchText, this.state.sortOrder).then(data => {
-      this.setState({pies: data});
+      if (this.state.isMounted) {
+        if (data instanceof Error) this.setState({openError: true, error: data.toString()});
+        else this.setState({pies: data, openError: false, page: newPage});
+      }
     });
-    this.setState({page: newPage});
   }
 
   handleSearch(searchText) {
     getPiesOfTheDay(1, searchText, this.state.sortOrder).then(data => {
-      this.setState({pies: data});
+      if (this.state.isMounted) {
+        if (data instanceof Error) this.setState({openError: true, error: data.toString()});
+        else this.setState({pies: data});
+      }
     });
-    this.setState({searchText: searchText, page: 1});
+    this.setState({searchText: searchText, page: 1, openError: false});
   }
 
   handleSort() {
@@ -51,13 +72,16 @@ class PiesListContainer extends Component {
     if (this.state.sortOrder && this.state.sortOrder === 'asc') newOrder = 'desc';
 
     getPiesOfTheDay(1, this.state.searchText, newOrder).then(data => {
-      this.setState({pies: data});
+      if (this.state.isMounted) {
+        if (data instanceof Error) this.setState({openError: true, error: data.toString()});
+        else this.setState({pies: data});
+      }
     });
-    this.setState({page: 1, sortOrder: newOrder});
+    this.setState({page: 1, sortOrder: newOrder, openError: false});
   }
 
   render() {
-    const {pies, page, sortOrder} = this.state;
+    const {pies, page, sortOrder, error, openError} = this.state;
 
     return (
       <div className="container">
@@ -98,6 +122,13 @@ class PiesListContainer extends Component {
             <KeyboardArrowRight/>
           </Button>
         </div>
+
+        <Snackbar
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+          open={openError}
+          message={<span id="message-id">{error}</span>}
+          autoHideDuration={3000}
+        />
 
 
       </div>

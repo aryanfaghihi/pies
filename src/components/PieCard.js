@@ -8,6 +8,7 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import AddressIcon from '@material-ui/icons/Place'
 import ReactMapGL, {Marker} from 'react-map-gl';
 import Chip from '@material-ui/core/Chip';
+import PropTypes from 'prop-types';
 
 
 class PieCard extends Component {
@@ -100,5 +101,17 @@ class PieCard extends Component {
     );
   }
 }
+
+PieCard.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.string,
+  quantity: PropTypes.number,
+  storeName: PropTypes.string,
+  phone: PropTypes.string,
+  address: PropTypes.string,
+  lat: PropTypes.number,
+  long: PropTypes.number,
+  rating: PropTypes.number
+};
 
 export default PieCard;
