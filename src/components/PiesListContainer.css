@@ -2,3 +2,12 @@
     width: 80%;
     margin: 30px auto;
 }
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-number {
+    margin: 0 10px;
+}
